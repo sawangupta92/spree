@@ -9,8 +9,25 @@ describe Spree::Variant, :type => :model do
   it_behaves_like 'default_price'
 
   describe 'validations' do
-    it { expect(master_variant).to_not validate_presence_of(:option_values) }
-    it { expect(variant).to validate_presence_of(:option_values) }
+    context 'option_values_required?' do
+      before do
+        allow(master_variant).to receive(:option_values_required?).and_return(true)
+        allow(variant).to receive(:option_values_required?).and_return(true)
+      end
+
+      it { expect(master_variant).to_not validate_presence_of(:option_values) }
+      it { expect(variant).to validate_presence_of(:option_values) }
+    end
+
+    context '!option_values_required?' do
+      before do
+        allow(master_variant).to receive(:option_values_required?).and_return(false)
+        allow(variant).to receive(:option_values_required?).and_return(false)
+      end
+
+      it { expect(master_variant).to_not validate_presence_of(:option_values) }
+      it { expect(variant).to_not validate_presence_of(:option_values) }
+    end
   end
 
   context 'sorting' do
@@ -702,6 +719,12 @@ describe Spree::Variant, :type => :model do
         it { expect(variant.available?).to be(false) }
       end
     end
+  end
+
+  describe '#option_values_required?' do
+    subject { variant.send(:option_values_required?) }
+
+    it { is_expected.to be true }
   end
 
   describe "#check_price" do
