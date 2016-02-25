@@ -9,7 +9,7 @@ describe Spree::Variant, :type => :model do
   it_behaves_like 'default_price'
 
   describe 'validations' do
-    context 'option_values_required?' do
+    context 'when option values are required' do
       before do
         allow(master_variant).to receive(:option_values_required?).and_return(true)
         allow(variant).to receive(:option_values_required?).and_return(true)
@@ -19,7 +19,7 @@ describe Spree::Variant, :type => :model do
       it { expect(variant).to validate_presence_of(:option_values) }
     end
 
-    context '!option_values_required?' do
+    context 'when option values are not required' do
       before do
         allow(master_variant).to receive(:option_values_required?).and_return(false)
         allow(variant).to receive(:option_values_required?).and_return(false)
