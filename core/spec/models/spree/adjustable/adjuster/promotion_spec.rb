@@ -17,8 +17,7 @@ describe Spree::Adjustable::Adjuster::Promotion, type: :model do
              source: source,
              amount: amount,
              state: "closed",
-             label: label,
-             mandatory: false)
+             label: label)
     end
 
     describe "competing promos" do
@@ -31,8 +30,7 @@ describe Spree::Adjustable::Adjuster::Promotion, type: :model do
                source_type: 'Custom',
                source_id: nil,
                amount: -3.50,
-               label: "Other",
-               mandatory: false)
+               label: "Other")
         create_adjustment("Promotion A", -2.50)
 
         subject.update

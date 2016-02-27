@@ -414,7 +414,6 @@ module Spree
       "amount" => "-12.0",
       "display_amount" => "-$12.00",
       "label" => "Promotion (test)",
-      "mandatory" => false,
       "locked" => false,
       "eligible" => true,
       "created_at" => "2012-10-24T01:02:25Z",

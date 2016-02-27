@@ -16,7 +16,6 @@ Adjustments have the following attributes:
 * `amount` The dollar amount of the adjustment.
 * `label`: The label for the adjustment to indicate what the adjustment is for.
 * `eligible`: Indicates if the adjustment is eligible for the thing it's adjusting.
-* `mandatory`: Indicates if this adjustment is mandatory; i.e that this adjustment *must* be applied regardless of its eligibility rules.
 * `state`: Can either be `open`, `closed`, or `finalized`. Once it is in the `finalized` state, it cannot be changed.
 * `included`: Whether or not this adjustment affects the final price of the item it is applied to. Used only for tax adjustments which may themselves be included in the price.
 
@@ -51,7 +50,6 @@ scope :additional, -> { where(included: false) }
 * `price`: All adjustments which adjust a `Spree::LineItem` object.
 * `shipping`: All adjustments which adjust a `Spree::Shipment` object.
 * `promotion`: All adjustments where the source is a `Spree::PromotionAction` object.
-* `optional`: All adjustments which are not `mandatory`.
 * `return_authorization`: All adjustments where the source is a `Spree::ReturnAuthorization`.
 * `eligible`: Adjustments which have been determined to be `eligible` for their adjustable. Useful for determining which adjustments are applying to the adjustable.
 * `charge`: Adjustments which *increase* the price of their adjustable.

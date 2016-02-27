@@ -8,13 +8,11 @@ first_order.adjustments.create!(
   :source => Spree::TaxRate.find_by_name!("North America"),
   :order  => first_order,
   :label => "Tax",
-  :state => "open",
-  :mandatory => true)
+  :state => "open")
 
 last_order.adjustments.create!(
   :amount => 0,
   :source => Spree::TaxRate.find_by_name!("North America"),
   :order  => last_order,
   :label => "Tax",
-  :state => "open",
-  :mandatory => true)
+  :state => "open")

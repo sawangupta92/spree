@@ -6,14 +6,6 @@
 #
 # Boolean attributes:
 #
-# +mandatory+
-#
-# If this flag is set to true then it means the the charge is required and will not
-# be removed from the order, even if the amount is zero. In other words a record
-# will be created even if the amount is zero. This is useful for representing things
-# such as shipping and tax charges where you may want to make it explicitly clear
-# that no charge was made for such things.
-#
 # +eligible?+
 #
 # This boolean attributes stores whether this adjustment is currently eligible
@@ -57,7 +49,6 @@ module Spree
     end
     scope :price, -> { where(adjustable_type: 'Spree::LineItem') }
     scope :shipping, -> { where(adjustable_type: 'Spree::Shipment') }
-    scope :optional, -> { where(mandatory: false) }
     scope :eligible, -> { where(eligible: true) }
     scope :charge, -> { where("#{quoted_table_name}.amount >= 0") }
     scope :credit, -> { where("#{quoted_table_name}.amount < 0") }
